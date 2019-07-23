@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+$countdown-size: 500px;
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	color: #212529;
+	padding: 0;
+	margin: 0;
+	font-family: 'Titillium Web', sans-serif;
+	background-color: #e7e7e7;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.7) 240px, #f2f7fb 0%);
+}
+
+header {
+	background: #fff;
+	height: 100px;
+	padding: 20px;
+	box-shadow: 0 2px 4px 0 rgba(43,43,43,.1);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	h1 {
+		padding: 0;
+		margin: 0;
+		font-size: 2rem;
+		font-weight: 400;
+		letter-spacing: .5px;
+	}
+
+	#clock {
+		font-size: 2rem;
+	}
+}
+
+main {
+	padding: 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: calc( 100vh - 120px - 140px );
+
+	#countdown {
+		height: $countdown-size;
+		width: $countdown-size;
+		position: relative;
+
+		.timer {
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+			position: absolute;
+			border-radius: 50%;
+
+			&:after {
+				height: $countdown-size / 5;
+				width: $countdown-size / 5;
+				left: 10px;
+				top: 10px;
+				position: absolute;
+				background: #111;
+				border-radius: 50%;
+				content: "";
+				display: block;
+			}
+
+			.hand {
+				float: left;
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+				width: 50%;
+
+				&:first-child {
+					transform: rotate(180deg);
+				}
+
+				span {
+					border: 50px solid rgba(0, 255, 255, .4);
+					border-bottom-color: transparent;
+					border-left-color: transparent;
+					border-radius: 50%;
+					display: block;
+					height: 0;
+					position: absolute;
+					right: 0;
+					top: 0;
+					transform: rotate(225deg);
+					width: 0;
+					animation-duration: 4s;
+					animation-iteration-count: infinite;
+					animation-timing-function: linear;
+				}
+
+				&:first-child span {
+					animation-name: spin1;
+				}
+
+				&:last-child span {
+					animation-name: spin2;
+				}
+			}
+
+			&.hour {
+				background: rgba(0, 0, 0, .3);
+				height: $countdown-size;
+				width: $countdown-size;
+				left: 0;
+				top: 0;
+
+				&:after {
+					height: $countdown-size - ($countdown-size / 10);
+					width: $countdown-size - ($countdown-size / 10);
+					left: $countdown-size / 20;
+					top: $countdown-size / 20;
+				}
+
+				.hand span {
+					border-top-color: rgba(255, 0, 255, .4);
+					border-right-color: rgba(255, 0, 255, .4);
+					border-width: $countdown-size / 2;
+				}
+			}
+		}
+
+		.face {
+			background: rgba(0, 0, 0, .1);
+			border-radius: 50%;
+			height: 80%;
+			left: 52px;
+			position: absolute;
+			width: 80%;
+			top: 52px;
+			display: flex;
+			text-align: center;
+			align-items: center;
+
+			span {
+				border-radius: 20px;
+				font-size: 6.25rem;
+				font-weight: 400;
+				top: 17px;
+				width: 100%;
+				color: #d7d7d7;
+			}
+		}
+	}
+
+	#users-remained {
+		font-size: 8.5rem;
+		font-family: 'Titillium Web', sans-serif;
+
+	}
+}
+
+footer {
+	height: 140px;
+	width: 100%;
+	background: #263544;
+	position: absolute;
+	bottom: 0;
+}
+
+
+@keyframes spin1 {
+	0% {
+		transform: rotate(225deg);
+	}
+	50% {
+		transform: rotate(225deg);
+	}
+	100% {
+		transform: rotate(405deg);
+	}
+}
+
+@keyframes spin2 {
+	0% {
+		transform: rotate(225deg);
+	}
+	50% {
+		transform: rotate(405deg);
+	}
+	100% {
+		transform: rotate(405deg);
+	}
+}
